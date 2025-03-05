@@ -1,0 +1,6 @@
+@ZaminConsumer_HostAddress = http://localhost:5221
+
+GET {{ZaminConsumer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
