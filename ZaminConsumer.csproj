@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.3.1" />
     <PackageReference Include="Zamin.Core.ApplicationServices" Version="9.0.0" />
@@ -15,11 +16,18 @@
     <PackageReference Include="Zamin.Core.Domain" Version="9.0.0" />
     <PackageReference Include="Zamin.Core.Domain.Toolkits" Version="9.0.0" />
     <PackageReference Include="Zamin.EndPoints.Web" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.Caching.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.Caching.InMemory" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.ObjectMappers.AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.Serializers.Microsoft" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.Translations.Parrot" Version="9.0.0" />
+    <PackageReference Include="Zamin.Extensions.UsersManagement" Version="9.0.0" />
     <PackageReference Include="Zamin.Infra.Data.Sql" Version="9.0.0" />
     <PackageReference Include="Zamin.Infra.Data.Sql.Commands" Version="9.0.0" />
     <PackageReference Include="Zamin.Infra.Data.Sql.Queries" Version="9.0.0" />
     <PackageReference Include="Zamin.Utilities" Version="9.0.0" />
     <PackageReference Include="Zamin.Utilities.SerilogRegistration" Version="9.0.0" />
+    <PackageReference Include="Zamin.Utilities.Swagger.Registration" Version="8.0.0" />
   </ItemGroup>
   
 

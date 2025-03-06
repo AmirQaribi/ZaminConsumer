@@ -11,13 +11,7 @@ public class DatabaseContext : BaseQueryDbContext
     public DbSet<UserGroup> UserGroups { get; set; } = null!;
     public DbSet<Group> Groups { get; set; } = null!;
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Server =.; Database = MiniBlogDb; User Id =sa; Password= 1qaz!QAZ; MultipleActiveResultSets=true");
-        }
-    }
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) optionsBuilder.UseSqlite(); }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UserGroup>()
@@ -31,5 +25,7 @@ public class DatabaseContext : BaseQueryDbContext
             .WithMany(g => g.UserGroups)
             .HasForeignKey(ug => ug.GroupId)
             .HasPrincipalKey(g => g.Id);
+
+        base.OnModelCreating(modelBuilder);
     }
 }
