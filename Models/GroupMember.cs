@@ -7,7 +7,7 @@ using ZaminConsumer.Utilities;
 namespace ZaminConsumer.Models
 {
     public class GroupMember(int userId, int groupId) : AggregateRoot<int>
-    {`
+    {
         #region Properties
         public User? User { get; set; }
         public Group? Group { get; set; }

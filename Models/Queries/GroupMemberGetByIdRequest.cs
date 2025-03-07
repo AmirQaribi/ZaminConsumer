@@ -10,5 +10,5 @@ public class GroupMemberGetByIdRequest : IQuery<GroupMemberQueryResponse?>, IWeb
     public int Id { get; set; }
 
     [SwaggerIgnore]
-    public string Path => $"/{Routes.GroupMember}";
+    public string Path => $"/{Routes.GroupMember}/getById";
 }

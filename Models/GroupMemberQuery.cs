@@ -15,7 +15,6 @@ public class GroupMemberQuery
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
     public Guid BusinessId { get; set; }
-    public List<GroupMemberQuery>? GroupMembers { get; set; }
 
     public interface IRepository
     {

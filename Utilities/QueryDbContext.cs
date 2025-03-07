@@ -9,8 +9,6 @@ public class QueryDbContext(DbContextOptions<QueryDbContext> options) : BaseQuer
     public virtual DbSet<UserQuery> Users { get; set; } = null!;
     public virtual DbSet<GroupMemberQuery> GroupMembers { get; set; } = null!;
     public virtual DbSet<GroupQuery> Groups { get; set; } = null!;
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) optionsBuilder.UseSqlite(); }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
