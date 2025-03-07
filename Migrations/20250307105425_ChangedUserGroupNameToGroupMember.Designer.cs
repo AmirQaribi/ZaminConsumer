@@ -11,7 +11,7 @@ using ZaminConsumer.Utilities;
 
 namespace ZaminConsumer.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(CommandDbContext))]
     [Migration("20250307105425_ChangedUserGroupNameToGroupMember")]
     partial class ChangedUserGroupNameToGroupMember
     {

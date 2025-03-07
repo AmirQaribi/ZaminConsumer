@@ -10,7 +10,7 @@ using ZaminConsumer.Utilities;
 
 namespace ZaminConsumer.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(CommandDbContext))]
     partial class DatabaseCommandContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

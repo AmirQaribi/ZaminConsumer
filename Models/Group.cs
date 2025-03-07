@@ -3,7 +3,6 @@ using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.Exceptions;
 using Zamin.Infra.Data.Sql.Commands;
 using ZaminConsumer.Utilities;
-using static ZaminConsumer.Commands.GroupCommands;
 
 namespace ZaminConsumer.Models;
 
@@ -29,12 +28,6 @@ public class Group(string title) : AggregateRoot<int>
     }
     #endregion
     #region Inner Classes
-    public class Query
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
-    }
-    public interface IGroupQueryRepository { public Task<Query?> ExecuteAsync(GroupGetById query); }
-    public class CommandRepository(DatabaseContext dbContext) : BaseCommandRepository<Group, DatabaseContext, int>(dbContext), ICommandRepository<Group, int> { }
+    public class Repository(CommandDbContext dbContext) : BaseCommandRepository<Group, CommandDbContext, int>(dbContext), ICommandRepository<Group, int> { }
     #endregion
 }

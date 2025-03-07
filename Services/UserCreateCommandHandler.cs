@@ -3,7 +3,7 @@ using Zamin.Core.Contracts.Data.Commands;
 using Zamin.Core.RequestResponse.Commands;
 using Zamin.Utilities;
 using ZaminConsumer.Models;
-using static ZaminConsumer.Commands.UserCommands;
+using ZaminConsumer.Models.Commands;
 
 namespace ZaminConsumer.Services;
 

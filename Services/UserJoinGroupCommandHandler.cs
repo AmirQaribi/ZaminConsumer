@@ -3,9 +3,8 @@ using Zamin.Core.Contracts.Data.Commands;
 using Zamin.Core.Domain.Exceptions;
 using Zamin.Core.RequestResponse.Commands;
 using Zamin.Utilities;
-using ZaminConsumer.Commands;
 using ZaminConsumer.Models;
-using static ZaminConsumer.Commands.UserCommands;
+using ZaminConsumer.Models.Commands;
 
 namespace ZaminConsumer.Services;
 

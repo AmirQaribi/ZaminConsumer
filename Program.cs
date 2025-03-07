@@ -39,12 +39,12 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
     builder.Services.AddZaminMicrosoftSerializer();
     builder.Services.AddZaminAutoMapperProfiles(builder.Configuration, "AutoMapper");
     builder.Services.AddZaminInMemoryCaching();
-    builder.Services.AddDbContext<DatabaseContext>(options =>
+    builder.Services.AddDbContext<CommandDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer"))
     .AddInterceptors(new SetPersianYeKeInterceptor(), new AddAuditDataInterceptor()));
 
-    //builder.Services.AddDbContext<DatabaseContext>(options =>
-    //options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer")));
+    builder.Services.AddDbContext<QueryDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer")));
 
     var swaggerOption = builder.Configuration.GetSection("Swagger");
     if (swaggerOption != null && swaggerOption.GetValue<bool>("Enabled") == true)

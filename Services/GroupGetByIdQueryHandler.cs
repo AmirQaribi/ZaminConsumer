@@ -1,16 +1,16 @@
 ﻿using Zamin.Core.ApplicationServices.Queries;
 using Zamin.Core.RequestResponse.Queries;
 using Zamin.Utilities;
-using static ZaminConsumer.Commands.GroupCommands;
-using static ZaminConsumer.Models.Group;
+using ZaminConsumer.Models.Queries;
+using static ZaminConsumer.Models.GroupQuery;
 
 namespace ZaminConsumer.Services;
 
-//public class GroupGetByIdQueryHandler(ZaminServices zaminServices, IGroupQueryRepository repository) : QueryHandler<GroupGetById, Query?>(zaminServices)
-//{
-//    public override async Task<QueryResult<Query?>> Handle(GroupGetById query)
-//    {
-//        var group = await repository.ExecuteAsync(query);
-//        return Result(group);
-//    }
-//}
+public class GroupGetByIdQueryHandler(ZaminServices zaminServices, IRepository repository) : QueryHandler<GroupGetByIdRequest, GroupQueryResponse?>(zaminServices)
+{
+    public override async Task<QueryResult<GroupQueryResponse?>> Handle(GroupGetByIdRequest query)
+    {
+        var group = await repository.ExecuteAsync(query);
+        return Result(group);
+    }
+}

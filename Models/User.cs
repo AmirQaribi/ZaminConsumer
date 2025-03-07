@@ -2,13 +2,12 @@
 using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.Exceptions;
 using Zamin.Infra.Data.Sql.Commands;
-using ZaminConsumer.Commands;
 using ZaminConsumer.Utilities;
 
 namespace ZaminConsumer.Models;
 
 
-public class User(string username, int age) : AggregateRoot<int>
+public partial class User(string username, int age) : AggregateRoot<int>
 {
 
     #region Properties
@@ -57,25 +56,6 @@ public class User(string username, int age) : AggregateRoot<int>
 
     #endregion
     #region Inner Classes
-    public class Query
-    {
-        public int Id { get; set; }
-        public string Age { get; set; } = string.Empty;
-        public string UserName { get; set; } = string.Empty;
-    }
-    public interface IUserQueryRepository { public Task<Query?> ExecuteAsync(UserGetById query); }
-    public class CommandRepository(DatabaseContext dbContext) : BaseCommandRepository<User, DatabaseContext, int>(dbContext), ICommandRepository<User, int> { }
-    //public partial class QueryModel
-    //{
-    //    public int Id { get; set; }
-    //    public string UserName { get; set; } = null!;
-    //    public int Age { get; set; }
-    //    public string? CreatedByUserId { get; set; }
-    //    public DateTime? CreatedDateTime { get; set; }
-    //    public string? ModifiedByUserId { get; set; }
-    //    public DateTime? ModifiedDateTime { get; set; }
-    //    public Guid BusinessId { get; set; }
-    //    public List<GroupMember.QueryModel> GroupMembers { get; set; }
-    //}
+    public class Repository(CommandDbContext dbContext) : BaseCommandRepository<User, CommandDbContext, int>(dbContext), ICommandRepository<User, int> { }
     #endregion
 }
