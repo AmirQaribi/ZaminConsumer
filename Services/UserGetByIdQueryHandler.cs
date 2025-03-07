@@ -1,7 +1,5 @@
-﻿using FluentValidation;
-using Zamin.Core.ApplicationServices.Queries;
+﻿using Zamin.Core.ApplicationServices.Queries;
 using Zamin.Core.RequestResponse.Queries;
-using Zamin.Extensions.Translations.Abstractions;
 using Zamin.Utilities;
 using ZaminConsumer.Models.Queries;
 using static ZaminConsumer.Models.UserQuery;

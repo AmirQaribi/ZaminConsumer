@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Zamin.EndPoints.Web.Controllers;
+﻿using Zamin.EndPoints.Web.Controllers;
 
 namespace ZaminConsumer.Controllers;
 

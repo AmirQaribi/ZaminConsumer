@@ -15,7 +15,6 @@ public class GroupCreateCommandHandler(ZaminServices zaminServices, ICommandRepo
         var group = Group.Create(command.Title);
         await repository.InsertAsync(group);
         await repository.CommitAsync();
-        Console.WriteLine("Yo3 {0}", group.BusinessId.Value.ToString());
         return Ok(group.BusinessId.Value);
     }
 }

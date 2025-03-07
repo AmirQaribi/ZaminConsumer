@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ZaminConsumer.Models;
 using ZaminConsumer.Models.Commands;
 using ZaminConsumer.Models.Queries;

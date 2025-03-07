@@ -1,19 +1,11 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System.Configuration;
-using Zamin.Core.ApplicationServices.Commands;
-using Zamin.Core.ApplicationServices.Events;
-using Zamin.Core.ApplicationServices.Queries;
-using Zamin.Core.Domain.Toolkits.ValueObjects;
 using Zamin.Extensions.DependencyInjection;
 using Zamin.Infra.Data.Sql.Commands.Interceptors;
 using Zamin.Utilities.SerilogRegistration.Extensions;
-using Zamin.Utilities.Swagger.Registration.Options;
 using ZaminConsumer.Utilities;
 
 SerilogExtensions.RunWithSerilogExceptionHandling(() =>
