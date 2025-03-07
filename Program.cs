@@ -26,7 +26,8 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
         o.ServiceName = builder.Configuration.GetValue<string>("ServiceName");
         o.ServiceVersion = builder.Configuration.GetValue<string>("ServiceVersion");
     });
-    //builder.Services.AddControllers();
+
+    builder.Services.AddControllers();
 
     builder.Services.AddSingleton<CommandDispatcherDecorator, CustomCommandDecorator>();
     builder.Services.AddSingleton<QueryDispatcherDecorator, CustomQueryDecorator>();
@@ -44,6 +45,10 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer"))
     .AddInterceptors(new SetPersianYeKeInterceptor(), new AddAuditDataInterceptor()));
 
+    //builder.Services.AddDbContext<DatabaseContext>(options =>
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer")));
+
+
     var swaggerOption = builder.Configuration.GetSection("Swagger");
     if (swaggerOption != null && swaggerOption.GetValue<bool>("Enabled") == true)
         builder.Services.AddSwaggerGen(o =>
@@ -56,6 +61,9 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
         });
 
     var app = builder.Build();
+
+    if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
+
 
     app.UseZaminApiExceptionHandler();
     app.UseSerilogRequestLogging();
@@ -70,6 +78,8 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
             option.OAuthUsePkce();
         });
     }
+
+    app.UseRouting();
     app.UseStatusCodePages();
     app.UseCors(delegate (CorsPolicyBuilder builder)
     {
@@ -81,5 +91,6 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
     //app.UseAuthorization();
     app.MapControllers();
 
+    //app.UseEndpoints(endpoints => endpoints.MapControllers());
     app.Run();
 });

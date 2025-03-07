@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ZaminConsumer.Commands;
 using ZaminConsumer.Models;
 using ZaminConsumer.Utilities;
 
@@ -8,20 +9,20 @@ namespace ZaminConsumer.Controllers;
 public class UserController : MasterController
 {
     [HttpGet("single")]
-    public async Task<IActionResult> GetById(UserCommands.GetUserById query) => await Query<UserCommands.GetUserById, User.Query?>(query);
+    public async Task<IActionResult> GetById(UserGetById query) => await Query<UserGetById, User.Query?>(query);
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] UserCommands.CreateUser command) => await Create<UserCommands.CreateUser, Guid>(command);
+    public async Task<IActionResult> Create([FromBody] UserCommands.UserCreate command) => await Create<UserCommands.UserCreate, Guid>(command);
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UserCommands.UpdateUser command) => await Edit(command);
+    public async Task<IActionResult> Update([FromBody] UserCommands.UserUpdate command) => await Edit(command);
 
     [HttpDelete]
-    public async Task<IActionResult> Delete([FromBody] UserCommands.DeleteUser command) => await base.Delete(command);
+    public async Task<IActionResult> Delete([FromBody] UserCommands.UserDelete command) => await base.Delete(command);
 
     [HttpPost("join")]
-    public async Task<IActionResult> JoinGroup([FromBody] UserCommands.JoinGroup command) => await Create<UserCommands.JoinGroup, Guid>(command);
+    public async Task<IActionResult> JoinGroup([FromBody] UserCommands.UserJoinGroup command) => await Create<UserCommands.UserJoinGroup, Guid>(command);
 
     [HttpDelete("leave")]
-    public async Task<IActionResult> LeaveGroup([FromBody] UserCommands.LeaveGroup command) => await Delete(command);
+    public async Task<IActionResult> LeaveGroup([FromBody] UserCommands.UserLeaveGroup command) => await Delete(command);
 }

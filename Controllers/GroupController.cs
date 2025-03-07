@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ZaminConsumer.Commands;
 using ZaminConsumer.Models;
 using ZaminConsumer.Utilities;
 
@@ -8,14 +9,14 @@ namespace ZaminConsumer.Controllers;
 public class GroupController : MasterController
 {
     [HttpGet("single")]
-    public async Task<IActionResult> GetById(GroupCommands.GetGroupById query) => await Query<GroupCommands.GetGroupById, Group.Query?>(query);
+    public async Task<IActionResult> GetById(GroupCommands.GroupGetById query) => await Query<GroupCommands.GroupGetById, Group.Query?>(query);
 
     [HttpPost]
-    public async Task<IActionResult> CreateGroup([FromBody] GroupCommands.CreateGroup command) => await Create<GroupCommands.CreateGroup, Guid>(command);
+    public async Task<IActionResult> CreateGroup([FromBody] GroupCommands.GroupCreate command) => await Create<GroupCommands.GroupCreate, Guid>(command);
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateGroup([FromBody] GroupCommands.UpdateGroup command) => await Edit(command);
+    //[HttpPut]
+    //public async Task<IActionResult> UpdateGroup([FromBody] GroupCommands.UpdateGroup command) => await Edit(command);
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteBlog([FromBody] GroupCommands.DeleteGroup command) => await Delete(command);
+    public async Task<IActionResult> DeleteBlog([FromBody] GroupCommands.GroupDelete command) => await Delete(command);
 }
