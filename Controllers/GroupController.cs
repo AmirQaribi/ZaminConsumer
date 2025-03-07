@@ -18,5 +18,5 @@ public class GroupController : MasterController
     //public async Task<IActionResult> UpdateGroup([FromBody] GroupCommands.UpdateGroup command) => await Edit(command);
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteBlog([FromBody] GroupCommands.GroupDelete command) => await Delete(command);
+    public async Task<IActionResult> DeleteGroup([FromBody] GroupCommands.GroupDelete command) => await Delete(command);
 }

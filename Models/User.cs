@@ -14,8 +14,8 @@ public class User(string username, int age) : AggregateRoot<int>
     #region Properties
     public string Username { get; private set; } = username;
     public int Age { get; private set; } = age;
-    public IReadOnlyList<UserGroup> UserGroups => [.. _userGroups];
-    private readonly List<UserGroup> _userGroups = [];
+    public IReadOnlyList<GroupMember> GroupMembers => [.. _groupMembers];
+    private readonly List<GroupMember> _groupMembers = [];
     #endregion
 
     #region Commands
@@ -25,30 +25,31 @@ public class User(string username, int age) : AggregateRoot<int>
         Username = username;
         Age = age;
 
-        //AddEvent(new BlogUpdated(BusinessId.Value, Title.Value, Description.Value));
+        //AddEvent(new
+        //Updated(BusinessId.Value, Title.Value, Description.Value));
     }
     public void Delete()
     {
-        if (_userGroups.Count != 0)
+        if (_groupMembers.Count != 0)
             throw new InvalidEntityStateException("این کاربر عضو گروه است");
 
         //AddEvent(new BlogDeleted(BusinessId.Value));
     }
     public void JoinGroup(int groupId)
     {
-        if (_userGroups.Any(ug => ug.GroupId.Equals(groupId)))
+        if (_groupMembers.Any(ug => ug.GroupId.Equals(groupId)))
             throw new InvalidEntityStateException("این کاربر قبلا عضو این گروه شده است");
 
-        var userGroup = UserGroup.Create(Id, groupId);
-        _userGroups.Add(userGroup);
+        var groupMembers = GroupMember.Create(Id, groupId);
+        _groupMembers.Add(groupMembers);
 
         //AddEvent(new BlogPostCreated(post.BusinessId.Value, BusinessId.Value, post.Title.Value));
     }
 
     public void LeaveGroup(int groupId)
     {
-        var group = _userGroups.FirstOrDefault(ug => ug.GroupId == groupId) ?? throw new InvalidEntityStateException("این یوزر عضو این گروه نیست");
-        _userGroups.Remove(group);
+        var group = _groupMembers.FirstOrDefault(ug => ug.GroupId == groupId) ?? throw new InvalidEntityStateException("این یوزر عضو این گروه نیست");
+        _groupMembers.Remove(group);
 
         //AddEvent(new BlogPostDeleted(group.BusinessId.Value, BusinessId.Value));
     }
@@ -74,7 +75,7 @@ public class User(string username, int age) : AggregateRoot<int>
     //    public string? ModifiedByUserId { get; set; }
     //    public DateTime? ModifiedDateTime { get; set; }
     //    public Guid BusinessId { get; set; }
-    //    public List<UserGroup.QueryModel> UserGroups { get; set; }
+    //    public List<GroupMember.QueryModel> GroupMembers { get; set; }
     //}
     #endregion
 }

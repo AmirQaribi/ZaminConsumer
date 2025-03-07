@@ -10,7 +10,7 @@ public static partial class UserCommands
     {
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty;
-        public int Aget { get; set; }
+        public int Age { get; set; }
         public string Path => $"/{Routes.User}";
     }
 }

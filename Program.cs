@@ -26,17 +26,15 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
         o.ServiceName = builder.Configuration.GetValue<string>("ServiceName");
         o.ServiceVersion = builder.Configuration.GetValue<string>("ServiceVersion");
     });
+    //builder.Services.AddSingleton<CommandDispatcherDecorator, CustomCommandDecorator>(); // TODO: Need to Learn more
+    //builder.Services.AddSingleton<QueryDispatcherDecorator, CustomQueryDecorator>(); // TODO: Need to Learn more
+    //builder.Services.AddSingleton<EventDispatcherDecorator, CustomEventDecorator>(); // TODO: Need to Learn more
 
     builder.Services.AddControllers();
-
-    builder.Services.AddSingleton<CommandDispatcherDecorator, CustomCommandDecorator>();
-    builder.Services.AddSingleton<QueryDispatcherDecorator, CustomQueryDecorator>();
-    builder.Services.AddSingleton<EventDispatcherDecorator, CustomEventDecorator>();
-
     builder.Services.AddZaminApiCore("ZaminConsumer");
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddZaminWebUserInfoService(builder.Configuration, "WebUserInfo", true);
-    builder.Services.AddZaminParrotTranslator(builder.Configuration, "ParrotTranslator");
+    builder.Services.AddZaminParrotTranslator(builder.Configuration, "ParrotTranslator"); // TODO: Need to Learn more
     //builder.Services.AddNonValidatingValidator();
     builder.Services.AddZaminMicrosoftSerializer();
     builder.Services.AddZaminAutoMapperProfiles(builder.Configuration, "AutoMapper");
@@ -47,7 +45,6 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
 
     //builder.Services.AddDbContext<DatabaseContext>(options =>
     //options.UseSqlServer(builder.Configuration.GetConnectionString("ZaminConsumer")));
-
 
     var swaggerOption = builder.Configuration.GetSection("Swagger");
     if (swaggerOption != null && swaggerOption.GetValue<bool>("Enabled") == true)
@@ -63,7 +60,6 @@ SerilogExtensions.RunWithSerilogExceptionHandling(() =>
     var app = builder.Build();
 
     if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
-
 
     app.UseZaminApiExceptionHandler();
     app.UseSerilogRequestLogging();

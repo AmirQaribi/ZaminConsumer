@@ -11,8 +11,8 @@ public class Group(string title) : AggregateRoot<int>
 {
     #region Properties
     public string Title { get; private set; } = title;
-    public IReadOnlyList<UserGroup> UserGroups => [.. _userGroups];
-    private readonly List<UserGroup> _userGroups = [];
+    public IReadOnlyList<GroupMember> GroupMembers => [.. _groupMembers];
+    private readonly List<GroupMember> _groupMembers = [];
     #endregion
     #region Commands
     public static Group Create(string title) => new(title);
@@ -23,7 +23,7 @@ public class Group(string title) : AggregateRoot<int>
     }
     public void Delete()
     {
-        if (_userGroups.Count != 0)
+        if (_groupMembers.Count != 0)
             throw new InvalidEntityStateException("این گروه دارای یک یا چند کاربر است");
         //AddEvent(new BlogDeleted(BusinessId.Value));
     }

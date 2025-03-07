@@ -13,13 +13,9 @@ public class GroupDeleteCommandHandler(ZaminServices zaminServices, ICommandRepo
     public override async Task<CommandResult> Handle(GroupDelete command)
     {
         var group = await repository.GetGraphAsync(command.Id) ?? throw new InvalidEntityStateException("گروه یافت نشد");
-
         group.Delete();
-
         repository.Delete(group);
-
         await repository.CommitAsync();
-
         return Ok();
     }
 }

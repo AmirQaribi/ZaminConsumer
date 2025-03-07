@@ -11,7 +11,7 @@ namespace ZaminConsumer.Utilities;
 public class DatabaseContext(DbContextOptions<DatabaseContext> options) : BaseOutboxCommandDbContext(options) // Command Db
 {
     public DbSet<User> Users { get; set; } = null!;
-    public DbSet<UserGroup> UserGroups { get; set; } = null!;
+    public DbSet<GroupMember> GroupMembers { get; set; } = null!;
     public DbSet<Group> Groups { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,7 +23,7 @@ public class DatabaseContext(DbContextOptions<DatabaseContext> options) : BaseOu
 //    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
 //    public virtual DbSet<User.QueryModel> Users { get; set; } = null!;
-//    public virtual DbSet<UserGroup.QueryModel> UserGroups { get; set; } = null!;
+//    public virtual DbSet<GroupMember.QueryModel> GroupMembers { get; set; } = null!;
 //    public virtual DbSet<Group.QueryModel> Groups { get; set; } = null!;
 
 //    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) optionsBuilder.UseSqlite(); }
@@ -31,15 +31,15 @@ public class DatabaseContext(DbContextOptions<DatabaseContext> options) : BaseOu
 //    {
 //        base.OnModelCreating(modelBuilder);
 
-//        modelBuilder.Entity<UserGroup.QueryModel>()
+//        modelBuilder.Entity<GroupMember.QueryModel>()
 //            .HasOne(ug => ug.User)
-//            .WithMany(u => u.UserGroups)
+//            .WithMany(u => u.GroupMembers)
 //            .HasForeignKey(ug => ug.UserId)
 //            .HasPrincipalKey(u => u.Id);
 
-//        modelBuilder.Entity<UserGroup.QueryModel>()
+//        modelBuilder.Entity<GroupMember.QueryModel>()
 //            .HasOne(ug => ug.Group)
-//            .WithMany(g => g.UserGroups)
+//            .WithMany(g => g.GroupMembers)
 //            .HasForeignKey(ug => ug.GroupId)
 //            .HasPrincipalKey(g => g.Id);
 
