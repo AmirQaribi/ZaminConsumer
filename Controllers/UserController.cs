@@ -7,8 +7,13 @@ using ZaminConsumer.Utilities;
 namespace ZaminConsumer.Controllers;
 
 [Route(Routes.User)]
-public class UserController : MasterController
+public class UserController(QueryDbContext queryContex) : MasterController
 {
+    private readonly QueryDbContext _queryContext = queryContex;
+
+    [HttpGet()]
+    public ActionResult<List<User>> GetAll() => Ok(_queryContext.Users.ToList());
+
     [HttpGet("getById")]
     public async Task<IActionResult> GetById(UserGetByIdRequest query) => await Query<UserGetByIdRequest, UserQueryResponse?>(query);
 
@@ -20,10 +25,4 @@ public class UserController : MasterController
 
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] UserDelete command) => await base.Delete(command);
-
-    [HttpPost("join")]
-    public async Task<IActionResult> JoinGroup([FromBody] UserJoinGroup command) => await Create<UserJoinGroup, Guid>(command);
-
-    [HttpDelete("leave")]
-    public async Task<IActionResult> LeaveGroup([FromBody] UserLeaveGroup command) => await Delete(command);
 }

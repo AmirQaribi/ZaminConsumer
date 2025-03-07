@@ -4,9 +4,9 @@ using ZaminConsumer.Utilities;
 
 namespace ZaminConsumer.Models.Commands;
 
-public class UserJoinGroup : ICommand<Guid>, IWebRequest
+public class GroupMemberCreate : ICommand<Guid>, IWebRequest
 {
     public int UserId { get; set; }
     public int GroupId { get; set; }
-    public string Path => $"/{Routes.User}/join";
+    public string Path => $"/{Routes.GroupMember}";
 }

@@ -6,4 +6,5 @@ internal static class Routes
 
     public const string User = $"{Endpoint}/user";
     public const string Group = $"{Endpoint}/group";
+    public const string GroupMember = $"{Group}/members";
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ZaminConsumer.Models;
 using ZaminConsumer.Models.Commands;
 using ZaminConsumer.Models.Queries;
@@ -7,8 +9,13 @@ using ZaminConsumer.Utilities;
 namespace ZaminConsumer.Controllers;
 
 [Route(Routes.Group)]
-public class GroupController : MasterController
+public class GroupController(QueryDbContext queryContex) : MasterController
 {
+    private readonly QueryDbContext _queryContext = queryContex;
+
+    [HttpGet()]
+    public ActionResult<List<Group>> GetAll() => Ok(_queryContext.Groups.ToList());
+
     [HttpGet("getById")]
     public async Task<IActionResult> GetById(GroupGetByIdRequest query) => await Query<GroupGetByIdRequest, GroupQueryResponse?>(query);
 

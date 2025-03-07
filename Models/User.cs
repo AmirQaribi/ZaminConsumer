@@ -33,26 +33,7 @@ public partial class User(string username, int age) : AggregateRoot<int>
             throw new InvalidEntityStateException("این کاربر عضو گروه است");
 
         //AddEvent(new BlogDeleted(BusinessId.Value));
-    }
-    public void JoinGroup(int groupId)
-    {
-        if (_groupMembers.Any(ug => ug.GroupId.Equals(groupId)))
-            throw new InvalidEntityStateException("این کاربر قبلا عضو این گروه شده است");
-
-        var groupMembers = GroupMember.Create(Id, groupId);
-        _groupMembers.Add(groupMembers);
-
-        //AddEvent(new BlogPostCreated(post.BusinessId.Value, BusinessId.Value, post.Title.Value));
-    }
-
-    public void LeaveGroup(int groupId)
-    {
-        var group = _groupMembers.FirstOrDefault(ug => ug.GroupId == groupId) ?? throw new InvalidEntityStateException("این یوزر عضو این گروه نیست");
-        _groupMembers.Remove(group);
-
-        //AddEvent(new BlogPostDeleted(group.BusinessId.Value, BusinessId.Value));
-    }
-
+}
 
     #endregion
     #region Inner Classes
